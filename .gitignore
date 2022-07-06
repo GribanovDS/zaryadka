@@ -1,3 +1,4 @@
-.idea
 ngrok.exe
 node_modules
+.gitignore
+hello.txt

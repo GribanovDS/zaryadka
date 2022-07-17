@@ -1762,7 +1762,7 @@
     let rand = dict[Math.floor(Math.random() * dict.length)];
     let com = "Базовый"
 
-    let token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZjAwMWJlYjc4NjkyOThkZGRiY2FkOTQ5M2M2YzlkODAyN2E3ZGYzOGZlNWMxM2JkODYyNzFhZTZlZjA0YjVlODVkOGYiLCJhdWQiOiJWUFMiLCJleHAiOjE2NTcxNzc3NzcsImlhdCI6MTY1NzA5MTM2NywiaXNzIjoiS0VZTUFTVEVSIiwidHlwZSI6IkJlYXJlciIsImp0aSI6ImVjYzgyMGNiLWZlMTktNDlkYS04NzViLWUxOTRlZTVhYTkzYyIsInNpZCI6ImIxM2E2MzQyLWExMjMtNDQwYS1hNDVhLTcyNWE2MzAzMzAwYSJ9.bPr7N9rZKsbF6yIPN_JosuVQxF9Uehm3MEsR2WfJNZo1fYcsK6639Kzyct9sYOIKUa5PF8RmlhWLskX2rs_kKTPBDkUKkwYqrnxfM4HBPQe_O-LAzs2Tgo5thJrSJ4moWGW_acM_A4OasAOojdgOgo09710FbE8M22w4huiC4C7p05s9CHKcG9YWvga5xgWSaaa51D0p0v0_3mwVzypOGzYIcRCZmg3LeQKbCUsZuFhDP-g2QMBeMZpxSqtcZZbHE5pS-duitN0HTnrHxhA-elfyKcND45cVo4SD0tD_5-VbPxCa8DOG5r68ldDILaEBpjTfd73N8Qxtqn8w_go_KJ8G308CH6UXHLtUqne2qNDVOoUCKAQJQ8i7uuCGne4DDVh7lWNfqpgTE29Mb0WFybrlh3wOGvkSVUqixhkvduP8ht_13T1PNSJC07lMRedgxrM_7p8Z0_IRijVcJynP6FrLHKLDOuS9NlT0VlqdEsflLHzHgwJiocm76bppCz7AlvL-p4PabpeX6_jGDqqcc1eigMZqpJh874R3NTj5DsLxlERm2mKMfpLeI6GsDcP0lg3-fpAWiIlHbgD-nq5Jr6Ucqq_Wk4yOZtvyY522-bBvU-Bv2Rr3YEhGa3JQrPo1_IZeHyr8AA3YXeE3SVp2YKOVrS5Q__an2s4425HenfQ";
+    let token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhMDkxNmI5OWY4NjdkY2VkMjJhZTQ5ZDcwNmU1NWUzMmZkOTg0ZDFlNWE0YTFkOTc0ZmU2MTA4YTY4MjZkNGU0NTM5YmU5MjcwMDQyNjI5OCIsImF1ZCI6IlZQUyIsImV4cCI6MTY1ODE0MDE3MSwiaWF0IjoxNjU4MDUzNzYxLCJpc3MiOiJLRVlNQVNURVIiLCJ0eXBlIjoiQmVhcmVyIiwianRpIjoiMDk3YjI2MTItOTI4MS00M2U3LWIwMzQtZTEyZjNjOTYxMWM0Iiwic2lkIjoiOWE4MTUzYTAtMjRmMy00Zjg2LWFiMzktNTI1MjQxYWU5NGRmIn0.OORtMFeg0YQQQ1NTFSCN3gZPVWs7gyPSPGsl53p_TA-PL7rg3sCwlPl3Y-OIL7lOEOAooR7O5i_JDW_hhGK4OdSmMjOc-XYV9onFYa-XuA-gFtj3fvDCJSVYEnP9nouqhQXXcIPEk5qyDsWYN4J9t0AqFin9A-Z2WMR8dJlSCAJaxDbhCZF6LH5tR_gRtOaGdewb5SRJIdMrVhNtfyCSaoxsT7DSh_NV60G-fd0oXzGfv6fQrLEv7WU6mWlspXFOjLBbm7qYhvp8WIkgdnjacmcoibY9mwv_01Dl9T85jfIovfz8rQ7kn5FQ7dBpTXhlwzk6L8Fz1f5AL-9Ics993ffAvsxbEJ0TMMvPmBtxMMosMCTIjEHyinVEjIFS79plLmNKeaIhYLLkOoRBXuKtMSeVv3I3wII5dhOb02R3fH3yJcEKDbvkNEnvHjQv72yO_0N2YYMBbZsYs6xqwiBSEqONcpWmt07XyGwmnoNAoejLdBclkRBNBhTnoj_IoT0S4gg-7VKHSO6rVitJanSCFykPz_y-1ytZbKRgqpTCbL-V2qS-WxUvPbeW3hAWi8ftWd9rh0rRJZPvweW9cQBd_i555dfn4ByG6I-FESDosEwGek25PXqZsxtFl0lpfGmNWymbGLPy25BayrYAGyVPAX44y-hh-PnM-Bw0R8i0a3s";
 // Set the name of your SmartApp for activation
     let initPhrase = 'запусти Слова для Крокодила';
     let character = 'eva'; // default, before sber client gets state
@@ -3287,6 +3287,7 @@
             color: white;
             text-shadow: #cccccc 0 0 20px;
             font-size: 100%;
+            margin-left: 0px;
         }
 
         .scores-container {
@@ -3574,6 +3575,7 @@
             color: white;
             text-shadow: #cccccc 0 0 20px;
             font-size: 100%;
+            margin-left: 0px;
         }
 
         .scores-container {

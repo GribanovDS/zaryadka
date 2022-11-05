@@ -4,157 +4,171 @@ const textToCommand = (texts: string[]) => {
     let text = texts.join(' ');
     text = text.toLocaleLowerCase();
 
-    let smartapp = ['три п', 'слова на п', '3 п', 'treep'];
-    let changeword = ['покажи слово', 'новое слово','покажи новое слово','другое слово','поменяй слово','смени слово','покажи другое слово'];
-    let changemode = ['режим'];
-    let helps = ['справка', 'помог', 'помощ', 'как игр', 'научи', 'почему', 'что делать', 'что умеешь', 'правила'];
-    let greets = ['привет', 'здравствуй', 'здарова', 'здорова', 'хай', 'хеллоу'];
-    let restarts = ['заново', 'новая игра', 'с начала', 'перезап', 'снова', 'по новой'];
-    let guessedright = ['угадал','угадано','выиграл','отгадал','отгадано', 'выиграно'];
-    let guessedwrong = ['не угадал','не угадано','не выиграл','не отгадал','не отгадано', 'не выиграно','неугаданно'];
-    let close = ['закр','закрой помощь','скрой помощь','закрой справку', 'скрой справку', 'закрой мануал', 'скрой мануал', 'убери помощь', 'убери справку', 'убери мануал', 'поня', 'ясно', 'понял'];
-    let value = ['оцен'];
+    let smartapp = ['запусти зарядку','запусти утреннюю гимнастику'];
+    let greet = ['привет','добрый','салют','доброе','здравствуй'];
+    let help = ['помо','справка','правила','покажи что-нибудь'];
+    let value = ['оценка','оценить'];
+    let next = ['далее','дальше','след']
+    let stop = ['закончить','стоп','конец','останови']
+    let previous = ['наза','верни','верну','обратно']
 
     for (let dir of smartapp) {
         if (text.includes(dir)) return {type: 'smartapp'};
     }
-    for (let dir of changeword) {
-        if (text.includes(dir)) return {type: 'changeword'};
+    for (let dir of greet) {
+        if (text.includes(dir)) return {type: 'greet'};
     }
-    for (let dir of changemode) {
-        if (text.includes(dir)) return {type: 'changemode'};
-    }
-    for (let dir of close){
-        if (text.includes(dir)) return {type: 'close'};
-    }
-    for (let help of helps){
-        if (text.includes(help)) return {type: 'help'};
-    }
-    for (let greet of greets){
-        if (text.includes(greet)) return {type: 'greet'};
-    }
-    for (let restart of restarts){
-        if (text.includes(restart)) return {type: 'restart'};
-    }
-    for (let dir of guessedwrong){
-        if (text.includes(dir)) return {type: 'guessedwrong'};
-    }
-    for (let dir of guessedright){
-        if (text.includes(dir)) return {type: 'guessedright'};
-    }
-    for (let dir of value){
+    for (let dir of value) {
         if (text.includes(dir)) return {type: 'value'};
     }
-    if (text.length <= 1 ) return {type: 'double'};
-
+    for (let dir of next) {
+        if (text.includes(dir)) return {type: 'next'};
+    }
+    for (let dir of stop) {
+        if (text.includes(dir)) return {type: 'stop'};
+    }
+    for (let dir of previous) {
+        if (text.includes(dir))  return {type: 'previous'};
+    }
+    for (let dir of help) {
+        if (text.includes(dir)) return {type: 'help'};
+    }
     return {type: 'fail'};
 }
 
 function* script(r: SberRequest, rs: SberResponse) {
     let rsp = r.buildRsp();
-    rsp.kbrd = ['Оценить'];
+    rsp.kbrd = ['Оценить','Помощь'];
     
     let phrase;
     let phraseIndex;
     let {gender, appeal} = r.body.payload.character;
-    let changewordPhrases = ['Сделано!', 'Готово!', 'Новое слово на экране!', 'Внимание на экран', 'Слово появилось!'];
-    let changemodePhrases = ['Сделано!', 'Готово!', 'Новый режим включён!'];
-    let maleofficialFailPhrases = ['Я пока не выучил эту команду. Лучше скажите «помощь» или нажмите на одноимённую кнопку, возможно, это чем-то поможет', 'Расшифровка этого займет несколько часов. Лучше скажите «помощь» или нажмите на одноимённую кнопку, возможно, это чем-то поможет',
-        'Над этим мне нужно подумать. Лучше скажите «помощь» или нажмите на одноимённую кнопку, возможно, это чем-то поможет', 'Разработчики работают над добавлением этой команды. Лучше скажите «помощь» или нажмите на одноимённую кнопку, возможно, это чем-то поможет',
-        'Скоро я пойму, что это значит. Лучше скажите «помощь» или нажмите на одноимённую кнопку, возможно, это чем-то поможет'];
-    let maleno_officialFailPhrases = ['Я пока не выучил эту команду. Лучше скажи «помощь» или нажми на одноимённую кнопку, возможно, это чем-то поможет', 'Расшифровка этого займет несколько часов. Лучше скажи «помощь» или нажми на одноимённую кнопку, возможно, это чем-то поможет',
-        'Над этим мне нужно подумать. Лучше скажи «помощь» или нажми на одноимённую кнопку, возможно, это чем-то поможет', 'Разработчики работают над добавлением этой команды. Лучше скажи «помощь» или нажми на одноимённую кнопку, возможно, это чем-то поможет',
-        'Скоро я пойму, что это значит. Лучше скажи «помощь» или нажми на одноимённую кнопку, возможно, это чем-то поможет'];
-    let femaleofficialFailPhrases = ['Я пока не выучила эту команду. Лучше скажите «помощь» или нажмите на одноимённую кнопку, возможно, это чем-то поможет', 'Расшифровка этого займет несколько часов. Лучше скажите «помощь» или нажмите на одноимённую кнопку, возможно, это чем-то поможет',
-        'Над этим мне нужно подумать. Лучше скажите «помощь» или нажмите на одноимённую кнопку, возможно, это чем-то поможет', 'Разработчики работают над добавлением этой команды. Лучше скажите «помощь» или нажмите на одноимённую кнопку, возможно, это чем-то поможет',
-        'Скоро я пойму, что это значит. Лучше скажите «помощь» или нажмите на одноимённую кнопку, возможно, это чем-то поможет'];
-    let femaleno_officialFailPhrases = ['Я пока не выучила эту команду. Лучше скажи «помощь» или нажми на одноимённую кнопку, возможно, это чем-то поможет', 'Расшифровка этого займет несколько часов. Лучше скажи «помощь» или нажми на одноимённую кнопку, возможно, это чем-то поможет',
-        'Над этим мне нужно подумать. Лучше скажи «помощь» или нажми на одноимённую кнопку, возможно, это чем-то поможет', 'Разработчики работают над добавлением этой команды. Лучше скажи «помощь» или нажми на одноимённую кнопку, возможно, это чем-то поможет',
-        'Скоро я пойму, что это значит. Лучше скажи «помощь» или нажми на одноимённую кнопку, возможно, это чем-то поможет'];
-    let GuessedRightPhrases = ['Так держать!', 'Превосходно!', 'Замечательно!', 'Хорошая работа!'];
-    let GuessedWrongPhrases = ['Ничего страшного!', 'Повезёт в следующий раз!', 'Не всё так плохо!', 'Неприятности случаются'];
+    let maleofficialFailPhrases = ['Я пока не выучил эту команду. Лучше скажите «помощь», возможно, это чем-то поможет', 'Расшифровка этого займет несколько часов. Лучше скажите «помощь», возможно, это чем-то поможет',
+        'Над этим мне нужно подумать. Лучше скажите «помощь», возможно, это чем-то поможет', 'Разработчики работают над добавлением этой команды. Лучше скажите «помощь», возможно, это чем-то поможет',
+        'Скоро я пойму, что это значит. Лучше скажите «помощь», возможно, это чем-то поможет'];
+    let maleno_officialFailPhrases = ['Я пока не выучил эту команду. Лучше скажи «помощь» возможно, это чем-то поможет', 'Расшифровка этого займет несколько часов. Лучше скажи «помощь», возможно, это чем-то поможет',
+        'Над этим мне нужно подумать. Лучше скажи «помощь», возможно, это чем-то поможет', 'Разработчики работают над добавлением этой команды. Лучше скажи «помощь», возможно, это чем-то поможет',
+        'Скоро я пойму, что это значит. Лучше скажи «помощь», возможно, это чем-то поможет'];
+    let femaleofficialFailPhrases = ['Я пока не выучила эту команду. Лучше скажите «помощь», возможно, это чем-то поможет', 'Расшифровка этого займет несколько часов. Лучше скажите «помощь», возможно, это чем-то поможет',
+        'Над этим мне нужно подумать. Лучше скажите «помощь», возможно, это чем-то поможет', 'Разработчики работают над добавлением этой команды. Лучше скажите «помощь», возможно, это чем-то поможет',
+        'Скоро я пойму, что это значит. Лучше скажите «помощь», возможно, это чем-то поможет'];
+    let femaleno_officialFailPhrases = ['Я пока не выучила эту команду. Лучше скажи «помощь» возможно, это чем-то поможет', 'Расшифровка этого займет несколько часов. Лучше скажи «помощь», возможно, это чем-то поможет',
+        'Над этим мне нужно подумать. Лучше скажи «помощь», возможно, это чем-то поможет', 'Разработчики работают над добавлением этой команды. Лучше скажи «помощь», возможно, это чем-то поможет',
+        'Скоро я пойму, что это значит. Лучше скажи «помощь», возможно, это чем-то поможет'];
 
-    phrase = ` Добро пожаловать в приложение «Три П»! В данной игре ${(appeal === 'official' ? 'вам' : 'тебе')} нужно объяснить слово с экрана, используя только слова на букву «П». Здесь есть два режима и счётчик отгаданных слов!`;
+    phrase = ` Добро пожаловать в приложение «Зарядка»! Здесь ${(appeal === 'official' ? 'вы можете' : 'ты можешь')} провести личную зарядку. Для этого сначала нужно выбрать её длительность, а затем повторять за упражнениями на экране. Удачи!`;
     rsp.msg = phrase;
     rsp.data = {type: 'init'};
+    const Exercise_Name = () => {
+        rsp.msg = 'Я Дима'
+    }
     yield rsp;
 
     while (true) {
         rsp = r.buildRsp();
-        rsp.kbrd = ['Оценить'];
         gender = r.body.payload.character.gender;
         appeal = r.body.payload.character.appeal;
         if (r.type === 'SERVER_ACTION' && r.act?.action_id === 'help') {
-            rsp.data = {type: 'help'}
-            rsp.msg = `Суть игры - ${(appeal === 'official' ? 'вам' : 'тебе')} нужно объяснить слово с экрана, используя только слова на букву «П». Кнопка «Режим»  - меняет сложность игры. Кнопка «Новое слово»  - выдает новое слово из того же режима. Кнопка «Заново» - сбрасывает набранные очки. Удачной игры! Чтобы закрыть это окно - ${(appeal === 'official' ? 'скажите' : 'скажи')} «Закрой помощь»`;
-        } else if (r.type === 'SERVER_ACTION' && r.act?.action_id === 'restart') {
-            rsp.msg = 'Начинаю заново';
-            rsp.data = {type: 'restart'};
-        } else if (r.type === 'SERVER_ACTION' && r.act?.action_id === 'changeword') {
-            rsp.data = {type: 'changeword'};
-            phraseIndex = Math.floor(Math.random() * changewordPhrases.length);
-            rsp.msg = changewordPhrases[phraseIndex];
-        } else if (r.type === 'SERVER_ACTION' && r.act?.action_id === 'changemode') {
-            rsp.data = {type: 'changemode'};
-            phraseIndex = Math.floor(Math.random() * changemodePhrases.length);
-            rsp.msg = changemodePhrases[phraseIndex];
-        } else if (r.type === 'SERVER_ACTION' && r.act?.action_id === 'guessedright') {
-            rsp.data = {type: 'guessedright'};
-            phraseIndex = Math.floor(Math.random() * GuessedRightPhrases.length);
-            rsp.msg = GuessedRightPhrases[phraseIndex];
-        } else if (r.type === 'SERVER_ACTION' && r.act?.action_id === 'guessedwrong') {
-            rsp.data = {type: 'guessedwrong'};
-            phraseIndex = Math.floor(Math.random() * GuessedWrongPhrases.length);
-            rsp.msg = GuessedWrongPhrases[phraseIndex];
+            rsp.data = {type: 'helpme'}
+            rsp.msg = `Суть приложения - выбрать длительность зарядки и выполнять упражнения на экране. `;  
+        } else if (r.type === 'SERVER_ACTION' && r.act?.action_id === 'fivemin') {
+            rsp.data = {type: 'fivemin'}
+            rsp.msg = `Легкая разминка для быстрого пробуждения`;
+        } else if (r.type === 'SERVER_ACTION' && r.act?.action_id === 'sevenmin') {
+            rsp.data = {type: 'sevenmin'}
+            rsp.msg = `Идеальная гимнастика для большинства людей`;
+        } else if (r.type === 'SERVER_ACTION' && r.act?.action_id === 'tenmin') {
+            rsp.data = {type: 'tenmin'}
+            rsp.msg = `Полноценная тренировка для всего тела`;
+        } else if (r.type === 'SERVER_ACTION' && r.act?.action_id === 'start') {
+            rsp.data = {type: 'start'}
+            rsp.msg = `${(appeal === 'official' ? 'Повторяйте' : 'Повторяй')} за упражнениями на экране`;
+            console.log(r.act?.type);
+            console.log(r.act?.type == 'hands1');
+            setTimeout(Exercise_Name, 1000);
+        } else if (r.type === 'SERVER_ACTION' && r.act?.action_id === 'completed') {
+            rsp.data = {type: 'completed'};
+            rsp.kbrd = ['Оценить','Помощь'];
+            rsp.msg = 'Поздравляю! Зарядка окончена';
+        } else if (r.type ==='SERVER_ACTION' && r.act.action_id === 'next') {
+            rsp.data = {type: 'next'};
+            // rsp.kbrd = ['Закончить','Вернуться','Далее'];
+            setTimeout(() => Exercise_Name, 1000);
+        } else if (r.type ==='SERVER_ACTION' && r.act.action_id === 'exercise') {
+            rsp.data = {type: 'exercise'};
+            rsp.kbrd = ['Закончить','Вернуться','Далее'];
+            var exer = r.act?.type;
+            console.log(exer)
+            if (exer == 'hands1') 
+                rsp.msg = `${(appeal === 'official' ? 'Делайте' : 'Делай')} вращения плечами. Для этого ${(appeal === 'official' ? 'положите' : 'положи')} свои руки на плечи и ${(appeal === 'official' ? 'вращайте' : 'вращай')} руки в одну сторону. Затем ${(appeal === 'official' ? 'повторяйте' : 'повторяй')} то же самое, только в другую сторону`
+            else if (exer == 'hands2')
+                rsp.msg = `${(appeal === 'official' ? 'Делайте' : 'Делай')} рывки руками в сторону. Для этого ${(appeal === 'official' ? 'согните' : 'согни')} руки в локтях, ${(appeal === 'official' ? 'сделайте' : 'сделай')} пару рывков. Затем ${(appeal === 'official' ? 'разомкните' : 'разомкни')} руки и ${(appeal === 'official' ? 'сделайте' : 'сделай')} так же пару рывков. При этом во время широких рывков можно поворачиваться корпусом вправо или влево`
+            else if (exer == 'hands3')
+                rsp.msg = `${(appeal === 'official' ? 'Делайте' : 'Делай')} рывки руками в сторону. Для этого одну руку ${(appeal === 'official' ? 'опустите' : 'опусти')} вниз, а другую ${(appeal === 'official' ? 'поднимите' : 'подними')} вверх. После сделанных рывков ${(appeal === 'official' ? 'поменяйте' : 'поменяй')} руки местами`
+            else if (exer == 'head1')
+                rsp.msg = `${(appeal === 'official' ? 'Делайте' : 'Делай')} вращения головой. Для этого руки ${(appeal === 'official' ? 'положите' : 'положи')} на талию и ${(appeal === 'official' ? 'вращайте' : 'вращай')} головой по часовой стрелке. Затем ${(appeal === 'official' ? 'повторите' : 'повтори')} это уже против часовой стрелки`
+            else if (exer == 'circling1')
+                rsp.msg = `${(appeal === 'official' ? 'Делайте' : 'Делай')} вращения тазом. Для этого руки ${(appeal === 'official' ? 'положите' : 'положи')} на талию и ${(appeal === 'official' ? 'вращайте' : 'вращай')} тазом по часовой стрелке. Затем ${(appeal === 'official' ? 'повторите' : 'повтори')} это уже против часовой стрелки`
+            else if (exer == 'circling2')
+                rsp.msg = `${(appeal === 'official' ? 'Делайте' : 'Делай')} вращения корпусом. Для этого руки ${(appeal === 'official' ? 'сомкните' : 'сомкни')} в кулак перед собой и ${(appeal === 'official' ? 'сделайте' : 'сделай')} повороты корпуса сначало влево, а затем вправо`
+            else if (exer == 'hands4')
+                rsp.msg = `${(appeal === 'official' ? 'Делайте' : 'Делай')} вращения кистей. Для этого руки ${(appeal === 'official' ? 'сомкните' : 'сомкни')} в кулак перед собой и ${(appeal === 'official' ? 'вращайте' : 'вращай')} кистями по часовой стрелке. Затем ${(appeal === 'official' ? 'повторите' : 'повтори')} это уже против часовой стрелки`
+            else if (exer == 'legs1')
+                rsp.msg = `${(appeal === 'official' ? 'Делайте' : 'Делай')} махи ногами. Для этого руки ${(appeal === 'official' ? 'положите' : 'положи')} на талию и ${(appeal === 'official' ? 'поднимите' : 'подними')} сначала одну ногу, а затем другую`
+            else if (exer == 'legs2')
+                rsp.msg = `${(appeal === 'official' ? 'Делайте' : 'Делай')} выпады. Для этого руки ${(appeal === 'official' ? 'положите' : 'положи')} на талию и ${(appeal === 'official' ? 'сделайте' : 'сделай')} шаг вперёд. Затем одну ногу ${(appeal === 'official' ? 'согните' : 'согни')} в колене под девяносто граудосв. Затем ${(appeal === 'official' ? 'поменяйте' : 'поменяй')} ногу`
+            else if (exer == 'legs3')
+                rsp.msg = `${(appeal === 'official' ? 'Делайте' : 'Делай')} приседания. Для этого ${(appeal === 'official' ? 'опускайтесь' : 'опускайся')} вниз с прямой спиной, пока бедро не станет параллельно полу. Затем ${(appeal === 'official' ? 'поднимитесь' : 'поднмись')} вверх `
+            else if (exer == 'legs4')
+                rsp.msg = `${(appeal === 'official' ? 'Делайте' : 'Делай')} прыжки. Для этого руки ${(appeal === 'official' ? 'положите' : 'положи')} на талию и ${(appeal === 'official' ? 'сделайте' : 'сделай')} несколько прыжков. Можно прыгать как на двух ногах, так и на одной`
+            else if (exer == 'slopes1')
+                rsp.msg = `${(appeal === 'official' ? 'Делайте' : 'Делай')} наклоны вбок. Для этого одну руку ${(appeal === 'official' ? 'положите' : 'положи')} на талию, а вторую ${(appeal === 'official' ? 'тяните' : 'тяни')} в сторону головы. Затем ${(appeal === 'official' ? 'сделайте' : 'сделай')} несколько наклонов вбок. Затем ${(appeal === 'official' ? 'поменяйте' : 'поменяй')} руку`
+            else if (exer == 'slopes2')
+                rsp.msg = `${(appeal === 'official' ? 'Делайте' : 'Делай')} наклоны вниз. Для этого ${(appeal === 'official' ? 'поставьте' : 'поставь')} ноги на ширине плеч, а затем, не сгиная ног в коленях, ${(appeal === 'official' ? 'постарайтесь' : 'постарайся')} дотянуться руками до пола`
+            }else if (r.type ==='SERVER_ACTION' && r.act.action_id === 'previous') {
+            rsp.kbrd = ['Закончить','Вернуться','Далее'];
+            rsp.data = {type: 'previous'};
         } else if (r.type == "RATING_RESULT") {
             //Пользовательская оценка. От 1 до 5
             rsp.data = {type: 'mark'};
-            rsp.msg = 'Спасибо за оценку!';            
+            rsp.msg = `Спасибо за оценку!`;            
         } else if (r.type === 'MESSAGE_TO_SKILL') {
             let texts = r.nlu.texts;
-            let command = textToCommand(texts);
-            if (command.type === 'changeword') {
-                let phraseIndex = Math.floor(Math.random() * changewordPhrases.length);
-                rsp.msg = changewordPhrases[phraseIndex];
+            let command = textToCommand(texts);   
+            if (command.type === 'greet') {
+                rsp.msg =  ` Добро пожаловать в приложение «Зарядка»! Здесь ${(appeal === 'official' ? 'вы можете' : 'ты можешь')} провести личную зарядку. Для этого сначала нужно выбрать её длительность, а затем повторять за упражнениями на экране. Удачи!`;
                 rsp.data = command;
-            } else if (command.type === 'changemode') {
-                let phraseIndex = Math.floor(Math.random() * changemodePhrases.length);
-                rsp.msg = changemodePhrases[phraseIndex];
-                rsp.data = command;
-            } else if (command.type === 'guessedright') {
-                let phraseIndex = Math.floor(Math.random() * GuessedRightPhrases.length);
-                rsp.msg = GuessedRightPhrases[phraseIndex];
-                rsp.data = command;
-            } else if (command.type === 'guessedwrong') {
-                let phraseIndex = Math.floor(Math.random() * GuessedWrongPhrases.length);
-                rsp.msg = GuessedWrongPhrases[phraseIndex];
-                rsp.data = command;
-            }  else if (command.type === 'close') {
-                rsp.data = command;
-                rsp.msg = 'Закрываю';
-            } else if (command.type === 'help') {
-                rsp.data = command;
-                rsp.msg = `Суть игры - ${(appeal === 'official' ? 'вам' : 'тебе')} нужно объяснить слово с экрана, используя только слова на букву «П». Кнопка «Режим»  - меняет сложность игры. Кнопка «Новое слово»  - выдает новое слово из того же режима. Кнопка «Заново» - сбрасывает набранные очки. Удачной игры! Чтобы закрыть это окно - ${(appeal === 'official' ? 'скажите' : 'скажи')} «Закрой помощь»`;
-            } else if (command.type === 'restart') {
-                rsp.msg = 'Начинаю заново';
-                rsp.data = command;
-            } else if (command.type === 'greet') {
-                    rsp.msg =  ` Добро пожаловать в приложение «Три П»! В данной игре ${(appeal === 'official' ? 'вам' : 'тебе')} нужно объяснить слово с экрана, используя только слова на букву «П». Здесь есть два режима и счётчик отгаданных слов!`;
-                    rsp.data = command;
             } else if (command.type === 'smartapp') {
-                    rsp.msg = ` Добро пожаловать в приложение «Три П»! В данной игре ${(appeal === 'official' ? 'вам' : 'тебе')} нужно объяснить слово с экрана, используя только слова на букву «П». Здесь есть два режима и счётчик отгаданных слов!`;
-                    rsp.data = command;
-            }
-            else if (command.type === 'value') {
+                rsp.msg = ` Добро пожаловать в приложение «Зарядка»! Здесь ${(appeal === 'official' ? 'вы можете' : 'ты можешь')} провести личную зарядку. Для этого сначала нужно выбрать её длительность, а затем повторять за упражнениями на экране. Удачи!`;
+                rsp.data = command;
+            } else if (command.type === 'start') {
+                rsp.data = command
+                rsp.msg = `${(appeal === 'official' ? 'Повторяйте' : 'Повторяй')} за упражнениями на экране`;
+            } else if (command.type === 'next') {
+                rsp.kbrd = ['Закончить','Вернуться','Далее'];
+                rsp.data = command;
+                setTimeout(Exercise_Name, 1000);
+            } else if (command.type === 'previous') {
+                rsp.kbrd = ['Закончить','Вернуться','Далее'];
+                rsp.data = command;
+            } else if (command.type === 'stop') {
+                rsp.msg = 'Завершаю';
+                rsp.kbrd = ['Оценить','Помощь'];
+                rsp.data = command;
+            } else if (command.type === 'completed') {
+                rsp.data = {type: 'completed'};
+                rsp.kbrd = ['Оценить','Помощь'];
+                rsp.msg = 'Поздравляю! Зарядка окончена';
+            } else if (command.type === 'value') {
                 rsp.msg = 'Оценивание';
                 rsp.data = command;
                 rsp.body.messageName = 'CALL_RATING';
-            }
-            else if (command.type === "double"){
-                rsp.msg = '';
-                rsp.data = {};
-            }
-            else if (command.type === 'fail') {
+            } else if (command.type === 'help') {
+                rsp.msg = `Суть приложения - выбрать длительность зарядки и выполнять упражнения на экране. Во время зарядки можно перейти к следующему упражнению, сказав «Далее», или закончить её выполнение, сказав «Закончить». Количество повторений определяется ${(appeal === 'official' ? 'вами' : 'тобой')} самостоятельно`;  
+                rsp.data = command;
+            } else if (command.type === 'exercise') {  
+                rsp.data = command;
+            } else if (command.type === 'fail') {
                 let {gender, appeal} = r.body.payload.character;
                 console.log(gender, appeal);
                 if (gender === 'male') {

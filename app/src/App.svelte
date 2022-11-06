@@ -4,15 +4,14 @@
     import { setTheme } from './themes';
     import { logger } from "./utils";
 
-    let token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZjAwMWJlYjc4NjkyOThkZGRiY2FkOTQ5M2M2YzlkODAyN2E3ZGYzOGZlNWMxM2JkODYyNzFhZTZlZjA0YjVlODVkOGYiLCJhdWQiOiJWUFMiLCJleHAiOjE2Njc3MjY0ODgsImlhdCI6MTY2NzY0MDA3OCwiaXNzIjoiS0VZTUFTVEVSIiwidHlwZSI6IkJlYXJlciIsImp0aSI6IjQxZmQ2YmM0LWNkOGQtNDhmYS05NTU3LTA1MGI2YTcxZGMyOCIsInNpZCI6ImU5ZTdhMmY3LWY2MTEtNDNlNi04YTUwLTIzODcyMDgyNzA1NyJ9.Cnc3xqnypWBz9GVZ4qUt6NZpNTdd9B52alcqbNztqgG8XxoDLGUfeuUNz_C0r0CNsmDfAeMMMo9fmQ_Fe9EAFCVjH_s7eGmykiRCOvStkTDwUaNueiDVhSGDmS7Sv5G6oFKFkqmhc_bpgzE_9xJGKmOk5ArJ9qPBlpQ0jI611gSa6xgrYu1uagpikDlJdHGguDy3dDRLQLQrW224SXjXgvL_rPs7EpRm2UArZeALfw6T5WO2y2q3-5ESfkv5-nkpxRAfwfAYyMsj8_ChbKD1utlXlPXuOhVrWRqVeHcvFEudHBOwjgNGVFA4QjnBjLE_WDzxBmfX6esDULOK3pEdlhcwLV5WGKqlp0KyNdreic6JUgMvkUlhPXDUqIk9_zMEwaGveVZxPr5v8CY9yL9aBhO77bE8SnIVpi5ZPuFetg8D0ribc2jhx6hgktQgjOyHC_1SGnXta351zL5k18rPwfCLy6oVj9hIx3Fc05o6K81oOLi0MlGyCkUUpTlFVML8nncBCA9G5UsPF4329UsipJEYDoPYX2ijIW6y1e_T35yOTN3l6uOPNQn4xXNMaLQc1WLI3Jerqg4t6Gt-C1dbSpVEbi2bcGt3SXDLHUDh5-xksuAdwOK81gB4U-54N3QoZBSJhvUb-FVthdz8P78kwKalOYMTw84KjS6HklZHERo";
+    let token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZjAwMWJlYjc4NjkyOThkZGRiY2FkOTQ5M2M2YzlkODAyN2E3ZGYzOGZlNWMxM2JkODYyNzFhZTZlZjA0YjVlODVkOGYiLCJhdWQiOiJWUFMiLCJleHAiOjE2Njc4MzI5MDYsImlhdCI6MTY2Nzc0NjQ5NiwiaXNzIjoiS0VZTUFTVEVSIiwidHlwZSI6IkJlYXJlciIsImp0aSI6IjE3MDYzMjJhLTA0ZjEtNGQ5Yy05NWI1LTMzYTM0YTMzZTMwOSIsInNpZCI6IjI4N2U1MzMxLTY5NDItNGRhNi1iMGVkLTFjNzJiMzlkYjIwYyJ9.chtA8xf4u8HjfwnoNhjj9Y2P-4Np-xXMpVDeOg_YpHgjZBzRJ4ldeKuDQN2B2ikPp_qCjpvg1m-eOujgj-W641xcF_jXbUB0KIfo6UpP75lHWAql6d3Mpo65ei9MPPd7K7ITmsIIgN1dieXSCtJdodt2Ga4Iq_ZhBftG1VwLhiW3r8l-Y4nnLblGyfNYWevDWUi2sciOoSwplMz6umGebKIvPloOI5Wt5GyCA7ZKIywF7MX6kBomc2VXvv4umSHC5mehu5CMxeQcjAYQpsM8_-pyPr7Qlwr3qCwK32ZEcCMXfPjdaJ8qKueI3v-5hPSJEFCuWt8jr-awRnQ3w7NaSjluBvUDjOckJDpBJaiADUxD-Z0f50a434I_0FEUpnNchyhPNBWfOhYuhCQGUwMQeroJPozIbg037iIQ5ldvWmT-40M6Wt0PxFrtbsctikI6P4dALL0fMqnJAM3OSbR4Ikn_JuPmktiDHdzakC_6BuKl6wnsT2fCsvdqWwOyHpk3dbxV2SvObK9rkQWtmMhgBtVsfgEBNju0gymPUZaAwl1DohteAeCGQd04suQZphKK0dyD-diW9fN14OVhMK50vWc9_yCa-btdzmztUGV1mL1mfUbRynPZaMb_WCfn70p5Q3h8NHjlJ4KzOvODKkDfJo56_foVZkWrzRm-2q9eFsM";
 // Set the name of your SmartApp for activation
-    let initPhrase = 'запусти Зарядка';
+    let initPhrase = 'запусти тест';
     let character = 'eva'; // default, before sber client gets state
     let assistant;
     var stoptime = false;
     var stopex = false;
     //$: setTheme(character);
-    
     onMount(() =>
     {
         function getState() {return {}}
@@ -24,7 +23,7 @@
         };
         assistant = init();
         assistant.on('start', () => { logger.log('SmartApp started'); });
-
+        digital();
         assistant.on('data', event =>
         {
             // Set your action or data hooks
@@ -52,6 +51,12 @@
                 else if (event.smart_app_data.type === 'next') {
                     if (window.document.body.className == 'start') {
                         if (number_of_exercise + 1 < exercise.length) {
+                            assistant.sendData({
+                                action: {
+                                    action_id: 'exercise',
+                                    type: exercise[number_of_exercise]
+                                }
+                            });
                             number_of_exercise++;
                         }
                         else {
@@ -67,12 +72,6 @@
                             window.document.body.className = '';
                             timePassed = 0;
                         }
-                        assistant.sendData({
-                                action: {
-                                    action_id: 'exercise',
-                                    type: exercise[number_of_exercise]
-                                }
-                            });
                 }
                     else {}
                 }
@@ -102,17 +101,20 @@
         })
     })
 
-    function digitalClock() {
+    function digital() {
         var date = new Date();
         var hours = date.getHours();
         var minutes = date.getMinutes();
         var seconds = date.getSeconds();
-        //    //* добавление ведущих нулей */
-        //   if (hours < 10) hours = "0" + hours;
-        //   if (minutes < 10) minutes = "0" + minutes;
-        //   if (seconds < 10) seconds = "0" + seconds;
-            document.getElementById("id_clock").innerHTML = hours + ":" + minutes + ":" + seconds;
-            setTimeout("digitalClock()", 1000);
+        var hours_str = hours.toString();
+        var minutes_str = minutes.toString();
+        var seconds_str = seconds.toString();
+           //* добавление ведущих нулей */
+        if (hours < 10) hours_str = "0" + hours_str;
+        if (minutes < 10) minutes_str = "0" + minutes_str;
+        if (seconds < 10) seconds_str = "0" + seconds_str;
+        document.getElementById("clock").innerHTML = hours_str + ":" + minutes_str + ":" + seconds_str;
+        setTimeout(digital, 1000);
    }
 
    let visible,fivebool,sevenbool,tenbool = false;
@@ -247,11 +249,20 @@
             }
         });
     };        
-    var images = ['1.gif','2.gif','3.gif','4.gif','5.gif','6.gif'];
-    var exercises_easy = ['hands1','hands2','hands3','circling2','circling1','slopes1','slopes2','legs1']
-    var exercises_middle = ['head1','hands1','hands2','hands3','circling2','circling1','slopes1','legs1','legs4']
-    var exercises_hard = ['head1','hands1','hands2','hands3','circling2','slopes1','legs1','legs2','legs3','legs4']
-    var exercise = ['head1']
+    // var images = ['1.gif','2.gif','3.gif','4.gif','5.gif','6.gif'];
+    // var exercises_easy = ['hands1','hands2','hands3','circling2','circling1','slopes1','slopes2','legs1']
+    // var exercises_middle = ['head1','hands1','hands2','hands3','circling2','circling1','slopes1','legs1','legs4']
+    // var exercises_hard = ['head1','hands1','hands2','hands3','circling2','slopes1','legs1','legs2','legs3','legs4']
+    var images = ['https://i.ibb.co/GMtN3Hx/2.gif',
+                'https://i.ibb.co/GMtN3Hx/2.gif',
+                'https://i.ibb.co/0CPR20G/3.gif',
+                'https://i.ibb.co/mtygXmN/4.gif',
+                'https://i.ibb.co/f2DCS88/5.gif',
+                'https://i.ibb.co/K2pJDhx/6.gif'];
+    var exercises_easy = ['https://i.ibb.co/QpmrKTq/hands1.png','https://i.ibb.co/KDGfvfs/hands2.png','https://i.ibb.co/Tt54cQk/hands3.png','https://i.ibb.co/gSpfmVZ/circling2.png','https://i.ibb.co/2jZYmQf/circling1.png','https://i.ibb.co/H7KqQBp/slopes1.png','https://i.ibb.co/56BB4x6/slopes2.png','https://i.ibb.co/XD3HN57/legs1.png']
+    var exercises_middle = ['https://i.ibb.co/QFR8MnR/head1.png','https://i.ibb.co/QpmrKTq/hands1.png','https://i.ibb.co/KDGfvfs/hands2.png','https://i.ibb.co/Tt54cQk/hands3.png','https://i.ibb.co/gSpfmVZ/circling2.png','https://i.ibb.co/2jZYmQf/circling1.png','https://i.ibb.co/H7KqQBp/slopes1.png','https://i.ibb.co/XD3HN57/legs1.png','https://i.ibb.co/dkW56bB/legs4.png']
+    var exercises_hard = ['https://i.ibb.co/QFR8MnR/head1.png','https://i.ibb.co/QpmrKTq/hands1.png','https://i.ibb.co/KDGfvfs/hands2.png','https://i.ibb.co/Tt54cQk/hands3.png','https://i.ibb.co/gSpfmVZ/circling2.png','https://i.ibb.co/H7KqQBp/slopes1.png','https://i.ibb.co/XD3HN57/legs1.png','https://i.ibb.co/FbzCw0q/legs2.png','https://i.ibb.co/GR9QNCF/legs3.png','https://i.ibb.co/dkW56bB/legs4.png']
+    var exercise = ['https://i.ibb.co/QFR8MnR/head1.png']
     var number_of_exercise = 0
     // Start with an initial value of 20 seconds
     const TIME_LIMIT = 10;
@@ -270,7 +281,7 @@
 }
 </script>
 <body id="body">
-<head>
+<!-- <head>
     <script>
     function digitalClock() {
         var date = new Date();
@@ -286,14 +297,14 @@
         }
   </script>  
 
-</head>
+</head> -->
 <div id = "bodymirror">
     <div class="game">
         <div class = "heading"> 
             <div class = "title">Зарядка</div>
             <div class = "emodji">💪</div>
             <div id="clock" class = "clock"></div>
-            <script>digitalClock();</script>
+            <!-- <script>digitalClock();</script> -->
         </div>
     </div>
     <hr class = "hr0">
@@ -322,7 +333,7 @@
                 {formatTimeLeft(timeLeft)}
             </span>
           </div>
-        <img id = "exercise" src = {'./images/' + exercise[number_of_exercise] + '.png'} class = "exercise" alt="Hello"/> 
+        <img id = "exercise" src = {exercise[number_of_exercise] + '.png'} class = "exercise" alt="Hello"/> 
     </div>
     <div class="wrap" id = "wrap">
         <button class = "fivemin" id = "fivemin" tabindex="1" on:click = {() => fivemin()}>
@@ -357,7 +368,7 @@
     {#if fivebool}
         <h1 class = "discription-title">5 мин</h1>
         <hr class = "hr2">
-        <img class = "img" src = {'./emotions/' + images[Math.floor(Math.random() * images.length)]} alt="this slowpoke moves"  width="250"/>
+        <img class = "img" src = {images[Math.floor(Math.random() * images.length)]} alt="this slowpoke moves"  width="250"/>
         <h0 class = "discrription"> Легкая разминка для быстрого пробуждения! <br/><br/>
             Зарядка включает следующие упражнения: <br/><br/>
             - Вращения руками<br/>
@@ -372,7 +383,7 @@
     {#if sevenbool}
         <h1 class = "discription-title">7 мин</h1>
         <hr class = "hr2">
-        <img class = "img" src = {'./emotions/' + images[Math.floor(Math.random() * images.length)]} alt="this slowpoke moves"  width="250"/>
+        <img class = "img" src = {images[Math.floor(Math.random() * images.length)]} alt="this slowpoke moves"  width="250"/>
         <h0 class = "discrription"> Идеальная гимнастика для большинства людей! <br/><br/>
             Зарядка включает следующие упражнения:  <br/><br/>
             - Вращения головой<br/>
@@ -388,7 +399,7 @@
     {#if tenbool}
         <h1 class = "discription-title">10 мин</h1>
         <hr class = "hr2">
-        <img class = "img" src = {'./emotions/' + images[Math.floor(Math.random() * images.length)]} alt="this slowpoke moves"  width="250"/>
+        <img class = "img" src = {images[Math.floor(Math.random() * images.length)]} alt="this slowpoke moves"  width="250"/>
         <h0 class = "discrription"> Полноценная тренировка для всего тела! <br/><br/>
             Зарядка включает следующие упражнения:  <br/><br/>
             - Вращения головой<br/>

@@ -102,8 +102,8 @@
     })
     const body = document.getElementById("body")
     document.addEventListener('keydown', (event) => {    
-        logger.log(event.keyCode);
-        document.getElementById('description').innerHTML = event.keyCode.toString();
+        logger.log(event, event.keyCode);
+        document.getElementById('description').innerHTML = event.key;
         switch(event.keyCode) {
     case 26:
       // Включить/Выключить

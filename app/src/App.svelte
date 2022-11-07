@@ -369,7 +369,7 @@
         <h1 class = "discription-title">5 мин</h1>
         <hr class = "hr2">
         <img class = "img" src = {images[Math.floor(Math.random() * images.length)]} alt="this slowpoke moves"  width="250"/>
-        <h0 class = "discrription"> Легкая разминка для быстрого пробуждения! <br/><br/>
+        <h0 class = "discrription">
             Зарядка включает следующие упражнения: <br/><br/>
             - Вращения руками<br/>
             - Рывки руками<br/>
@@ -384,7 +384,7 @@
         <h1 class = "discription-title">7 мин</h1>
         <hr class = "hr2">
         <img class = "img" src = {images[Math.floor(Math.random() * images.length)]} alt="this slowpoke moves"  width="250"/>
-        <h0 class = "discrription"> Идеальная гимнастика для большинства людей! <br/><br/>
+        <h0 class = "discrription">
             Зарядка включает следующие упражнения:  <br/><br/>
             - Вращения головой<br/>
             - Вращения руками<br/>
@@ -400,7 +400,7 @@
         <h1 class = "discription-title">10 мин</h1>
         <hr class = "hr2">
         <img class = "img" src = {images[Math.floor(Math.random() * images.length)]} alt="this slowpoke moves"  width="250"/>
-        <h0 class = "discrription"> Полноценная тренировка для всего тела! <br/><br/>
+        <h0 class = "discrription">
             Зарядка включает следующие упражнения:  <br/><br/>
             - Вращения головой<br/>
             - Вращения руками<br/>
@@ -421,6 +421,17 @@
 
 
 <style>
+    .close:focus, .start:focus {
+        background: rgb(87,144,137);
+        background: linear-gradient(135deg, rgba(87,144,137,1) 0%, rgba(46,116,110,1) 100%);
+        box-shadow: inset 0 0 0 5px white;
+    }
+    .title, .emodji, .clock, .hr0 {
+        margin-top: 10px;
+    }
+    .description {
+        font-family: cursive;
+    }
     .exercise{
         width: 1280px;
         height: 720px;
@@ -450,7 +461,7 @@
         height: 425px;
         float:left;
         margin-top: 0px;
-        font-size: 20px;
+        font-size: 22px;
         margin-left: 20px;
     }
     .img {
@@ -461,6 +472,9 @@
     }
     .start {
         float: left;
+        margin-bottom: 0;
+        font-size: 30px;
+        font-weight: bold;
         width: 50%;
         margin-right: 25%;
         margin-left: 25%;
@@ -493,9 +507,9 @@
     }
     .description {
         color: white;
-        font-size: 20px;
+        font-size: 30px;
         font-weight: bold;
-        margin-left: 10px;
+        margin-left: 25px;
         margin-right: 10px;
         margin-top: 10px;
         margin-bottom: 10px;
@@ -503,8 +517,8 @@
     .hr0 {
         background-color: rgb(255,255,255,0.8);
         height: 10px;
-        margin-left: 10px;
-        margin-right: 10px;
+        margin-left: 25px;
+        margin-right: 25px;
         border-radius: 10% / 30%;
         font-weight: 100;
     }
@@ -539,6 +553,7 @@
     }
     .clock {
         text-align: center;
+        font-family: fantasy;
         width: 180px;
         background: #4FD1C5;
         background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 100%);    
@@ -596,7 +611,7 @@
         margin-right: 10px;
     }
 
-    button::before {
+    .fivemin::before, .sevenmin::before, .tenmin::before {
         content: '';
         border-radius: 1000px;
         min-width: calc(300px + 12px);
@@ -610,7 +625,7 @@
         opacity: 0;
         transition: all 500ms ease;
     }
-    button:focus {
+    .fivemin:focus, .sevenmin:focus, .tenmin:focus {
         background: rgb(114,201,190);
         background: linear-gradient(135deg, rgba(114,201,190,1) 0%, rgba(72,187,177,1) 100%);
         box-shadow: inset 0 0 0 1px #3a7999;
@@ -725,15 +740,14 @@
         background-color: rgb(255,255,255,0.8);
         margin-top: 100px;
         height: 20px;
-        margin-left: 30px;
-        margin-right: 30px;
+        margin-left: 35px;
+        margin-right: 35px;
         border-radius: 10% / 30%;
         font-weight: 100;
     }
     .heading {
         color: white;
         font-size: 150px;
-        font-family: fantasy;
         text-align: center;
     }
     .title {
@@ -784,7 +798,7 @@
         align-items: center;
         justify-content: center;    
         float: left;
-        margin-left: 1%;
+        margin-left: 25px;
         margin-top: 100px;
         margin-bottom: 100px;
     }
@@ -883,7 +897,7 @@
     }
     .discription-title{
         margin-top: 35px;
-        font-size: 70px;
+        font-size: 80px;
     }
     .hr2 {
         background-color: rgb(255,255,255,0.8);
@@ -899,10 +913,12 @@
         margin-right: 25%;
         margin-left: 25%;
         height: 100px;
-        font-size: 40px;
+        font-size: 60px;
+        font-weight: bold;
     }
     .close {
         float: right;
+        font-weight: bold;
         margin-left: 100px;   
         border-radius: 100px;
         margin-right: 10px;
@@ -912,9 +928,9 @@
         margin-top: 10px;
     }
     .description{
-        font-size: 50px;
+        font-size: 60px;
         margin-top: 40px;
-        margin-left: 20px;
+        margin-left: 35px;
     }
     .fivemin, .sevenmin, .tenmin {
         width: 850px;
@@ -943,13 +959,17 @@
         align-items: center;
         justify-content: center;    
         float: left;
-        margin-left: 1%;
+        margin-left: 35px;
         margin-top: 400px;
         margin-bottom: 100px;
     }
     }
 
     @media screen and (max-width: 2100px) and (min-width: 1950px) {
+    .clock {
+        text-align: center;
+        width: 200px;
+    }
     .exercise{
         width: 1280px;
         height: 720px;
@@ -957,9 +977,9 @@
         margin-right: 320px;
     }
     .description{
-        font-size: 24px;
+        font-size: 34px;
         margin-top: 20px;
-        margin-left: 10px;
+        margin-left: 25px;
     }
     .fivemin, .sevenmin, .tenmin {
         width: 420px;
@@ -988,7 +1008,7 @@
         align-items: center;
         justify-content: center;    
         float: left;
-        margin-left: 1%;
+        margin-left: 25px;;
         margin-top: 200px;
         margin-bottom: 100px;
     }
@@ -1049,12 +1069,12 @@
         margin-right: 200px;
     }
     .discrription{
-        height: 550px;
-        font-size: 24px;
+        height: 500px;
+        font-size: 30px;
     }
     .discription-title{
         margin-top: 10px;
-        font-size: 38px;
+        font-size: 48px;
     }
     .hr2 {
         margin-top: 85px;
@@ -1066,6 +1086,7 @@
         height: 75px;
     }
     .close {
+        font-weight: bold;
         float: right;
         margin-left: 50px;   
         border-radius: 100px;
@@ -1148,7 +1169,7 @@
     }
     .discrription{
         height: 350px;
-        font-size: 16px;
+        font-size: 22px;
     }
     .start {
         margin-bottom: 100px;
@@ -1161,6 +1182,41 @@
     .base-timer__label {
         width: 250px;
         height: 250px;
+    }
+    .close:focus, .start:focus {
+        background: rgb(87,144,137);
+        background: linear-gradient(135deg, rgba(87,144,137,1) 0%, rgba(46,116,110,1) 100%);
+        box-shadow: inset 0 0 0 3px white;
+    }
+    .heading {
+        font-size: 70px;
+    }
+    .game {
+        height:100px;
+    }
+    .clock {
+        font-size: 40px;
+        margin-top: 20px;
+        width: 150px;
+    }
+    .hr0 {
+        height: 5px;
+    }
+    .description {
+        font-size: 22px;
+    }
+    .discrription {
+        font-size: 19px;
+        height: 300px;
+    }
+    .exercise {
+        width: 800px;
+        height: 450px;
+        margin-left: 240px;
+        margin-right: 240px;
+    }
+    .title {
+        width: 300px;
     }
 }
 </style>

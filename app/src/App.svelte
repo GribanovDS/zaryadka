@@ -102,43 +102,43 @@
     })
     const body = document.getElementById("body")
     document.addEventListener('keydown', (event) => {    
-        logger.log(event.key);
-        switch(event.key) {
-    case '26':
+        logger.log(event.keyCode);
+        switch(event.keyCode) {
+    case 26:
       // Включить/Выключить
       break;
-     case '164':
+     case 164:
       // Отключить звук
       break;
-     case '19':
+     case 19:
       // Вверх
       break;
-     case '22':
+     case 22:
       // Вправо
       break;
-     case '20':
+     case 20:
       // Вниз
-      case '21':
+      case 21:
       // Влево
      break;
-     case '23':
+     case 23:
       // ок   
       start()
      break;
-     case '4':
+     case 4:
       // Назад
         close()
      break;
-     case '84':
+     case 84:
       // AC Search
      break;
-     case '3':
+     case 3:
       // Домой
      break;
-     case '24':
+     case 24:
       // Увеличение громкости
      break;
-     case '25':
+     case 25:
       // Уменьшение громкости
      break;
   }

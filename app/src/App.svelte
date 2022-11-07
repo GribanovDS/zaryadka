@@ -427,6 +427,7 @@
         box-shadow: inset 0 0 0 5px white;
     }
     .title, .emodji, .clock, .hr0 {
+        font-family: fantasy;
         margin-top: 10px;
     }
     .description {
@@ -509,7 +510,7 @@
         color: white;
         font-size: 30px;
         font-weight: bold;
-        margin-left: 25px;
+        margin-left: 30px;
         margin-right: 10px;
         margin-top: 10px;
         margin-bottom: 10px;
@@ -517,8 +518,8 @@
     .hr0 {
         background-color: rgb(255,255,255,0.8);
         height: 10px;
-        margin-left: 25px;
-        margin-right: 25px;
+        margin-left: 30px;
+        margin-right: 30px;
         border-radius: 10% / 30%;
         font-weight: 100;
     }
@@ -798,7 +799,7 @@
         align-items: center;
         justify-content: center;    
         float: left;
-        margin-left: 25px;
+        margin-left: 30px;
         margin-top: 100px;
         margin-bottom: 100px;
     }
@@ -979,7 +980,7 @@
     .description{
         font-size: 34px;
         margin-top: 20px;
-        margin-left: 25px;
+        margin-left: 30px;
     }
     .fivemin, .sevenmin, .tenmin {
         width: 420px;

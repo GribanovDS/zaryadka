@@ -202,9 +202,9 @@
      break;
      case 13:
       // ок   
-      if (window.document.body.className == 'fivemin' || window.document.body.className == 'sevenmin' || window.document.body.className == 'tenmin') {
-       start()
-      }
+    //   if (window.document.body.className == 'fivemin' || window.document.body.className == 'sevenmin' || window.document.body.className == 'tenmin') {
+    //    start()
+    //   }
      break;
   }
 });

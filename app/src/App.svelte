@@ -118,10 +118,7 @@
         logger.log(event.keyCode);
         switch(event.keyCode) {
      case 37:
-     if (window.document.body.className == 'fivemin' || window.document.body.className == 'sevenmin' || window.document.body.className == 'tenmin') {
-       start()
-      }
-      else if (window.document.body.className == 'start') {
+     if (window.document.body.className == 'start') {
         if (number_of_exercise != 0) {
                         number_of_exercise--;
                         assistant.sendData({
@@ -135,10 +132,7 @@
       // Влево
       break;
       case 40:
-     if (window.document.body.className == 'fivemin' || window.document.body.className == 'sevenmin' || window.document.body.className == 'tenmin') {
-       start()
-      }
-      else if (window.document.body.className == 'start') {
+      if (window.document.body.className == 'start') {
         if (number_of_exercise != 0) {
                         number_of_exercise--;
                         assistant.sendData({
@@ -184,10 +178,7 @@
      break;
      case 38:
       // Вверх
-      if (window.document.body.className == 'fivemin' || window.document.body.className == 'sevenmin' || window.document.body.className == 'tenmin') {
-        close()
-      }
-      else if (window.document.body.className == 'start') {
+    if (window.document.body.className == 'start') {
         if (number_of_exercise + 1 < exercise.length) {
                             assistant.sendData({
                                 action: {
@@ -283,7 +274,7 @@
         var word = exercise[0]
         close();
         document.getElementById('wrap').style.display="none";
-        document.getElementById('description').innerHTML = "Повторяйте за упражнениями на экране";
+        document.getElementById('description').innerHTML = (assistant == 'joy') ? "Повторяй за упражнениями на экране" : "Повторяйте за упражнениями на экране"
         document.getElementById('base-timer').style.display="flex";
         startTimer(TIME_LIMIT);
         logger.log(word);    

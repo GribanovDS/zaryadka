@@ -114,13 +114,8 @@
             }
         })
     })
-    document.addEventListener('keypress', function (e) {
-    if (e.keyCode === KeyEvent.KEYCODE_DPAD_CENTER) {
-        document.getElementById('description').innerHTML = 'OK';
-    }
-  });
     document.addEventListener('keydown', (event) => {    
-        document.getElementById('description').innerHTML = event.which.toString();
+        logger.log(event.which)
         switch(event.which) { 
     case KeyEvent.KEYCODE_BACK:
         document.getElementById('description').innerHTML = 'Назад';
@@ -410,6 +405,7 @@
 }
 </script>
 <body id="body">
+    <script src="/node_modules/spatial-navigation-polyfill/polyfill/spatial-navigation-polyfill.js"></script>
 <!-- <head>
     <script>
     function digitalClock() {

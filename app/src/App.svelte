@@ -114,14 +114,25 @@
             }
         })
     })
+    document.addEventListener('keypress', function (e) {
+    if (e.keyCode === KeyEvent.KEYCODE_DPAD_CENTER) {
+        document.getElementById('description').innerHTML = 'OK';
+    }
+  });
     document.addEventListener('keydown', (event) => {    
         logger.log(event.keyCode);
         switch(event.keyCode) { 
-     case KeyEvent.KEYCODE_BACK:
+    case KeyEvent.KEYCODE_BACK:
         document.getElementById('description').innerHTML = 'Назад';
         break;
     case KeyEvent.KEYCODE_HOME:
         document.getElementById('description').innerHTML = 'Домой';
+        break;
+    case KeyEvent.KEYCODE_VOLUME_UP:
+        document.getElementById('description').innerHTML = 'звук';
+        break;
+    case KeyEvent.KEYCODE_VOLUME_DOWN:
+        document.getElementById('description').innerHTML = 'звук';
         break;
      case 37:
      if (window.document.body.className == 'start') {

@@ -120,7 +120,7 @@
     }
   });
     document.addEventListener('keydown', (event) => {    
-        document.getElementById('description').innerHTML = event.which;
+        document.getElementById('description').innerHTML = event.which.toString();
         switch(event.which) { 
     case KeyEvent.KEYCODE_BACK:
         document.getElementById('description').innerHTML = 'Назад';

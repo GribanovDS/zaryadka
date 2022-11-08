@@ -3,6 +3,7 @@
     import {createSmartappDebugger, createAssistant} from '@sberdevices/assistant-client';
     import { setTheme } from './themes';
     import { logger } from "./utils";
+  import KeyEvent from './keyevent';
 
     let token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGY5MzMwNjQ3MjJiN2M2Zjc1MTdiNGEwNGU5Y2Q1N2I3YmFhZGU1ZGRhODNlOTU4ZWM5MmZhYTk5ZDUwMTNmNTM5YmU5MjcwMDQyNjI5OCIsImF1ZCI6IlZQUyIsImV4cCI6MTY2NzkzMzkxOSwiaWF0IjoxNjY3ODQ3NTA5LCJpc3MiOiJLRVlNQVNURVIiLCJ0eXBlIjoiQmVhcmVyIiwianRpIjoiMjhhYmYxN2YtODdlNi00MDhjLWI3MTQtMGExYTkzZmFmYmQ2Iiwic2lkIjoiNTNkYWM3OGUtZTlmNS00MzBiLTkwZDktMDUwMjY1NzM1Njk3In0.fqJqcaBn1qwa46za8xyuOeqm75TwZleM4boBDAVdYZVmrR7jGg9tvGjV0sEmQbsb34tL04Mm32tphhOIXqg6_u_mnemnKSRdtwYZqLUhy930aV2sOXP3kmoeKR7ajqS9BOW8VmcLP__Bd_G0yhwyQsrt2Px7YpGwQDphZotCibDvdIs58Mmpv7hrrbtOrM520iwfZZyRMmw08cptI3ojoPy60hnHHEgk9tpJJ6xNQLtDEOlPp8aAwQH2HSunkxDx5f_Qb9gXAWVSkBFYhAQ2em0Jf1W11owMgZ-AcaBdR77co66Bv61tAO63i5AFf8RRWk0V25_HJKt-7t19F3a6aslr24OOCu0eKLvMhU8Fqhro4hXYkA6cnegM-ll2xsU9njiHaKVipcAjNJ7n37QaWYCI7RVwxu0rVTl5PCyFTHWeKfqe69yvYA28BEN9h4OfXrE3rxmemZpXVbREOSOx1bqGr9o7mQZsHOy5V2B8tuHAJaHTWCCS8b7vTkJ7TyYwnPAVqyWG23TlDKlssvnh5FtlPH4Uq3nMH_xUUbrxE8jl49qwaaQup4CZPgof8ZAoRt5d4I2CEDSPn1UMJuYmoBHYqoKJkcSCZOLM1RM_FNGV3pcEar1WC0QY5r31MZ0HAmGrDK-OL9a5yIdQyrto6v24lPSuKgJpuR2CLv0L3mc";
 // Set the name of your SmartApp for activation
@@ -113,10 +114,15 @@
             }
         })
     })
-
     document.addEventListener('keydown', (event) => {    
         logger.log(event.keyCode);
-        switch(event.keyCode) {
+        switch(event.keyCode) { 
+     case KeyEvent.KEYCODE_BACK:
+        document.getElementById('description').innerHTML = 'Назад';
+        break;
+    case KeyEvent.KEYCODE_HOME:
+        document.getElementById('description').innerHTML = 'Домой';
+        break;
      case 37:
      if (window.document.body.className == 'start') {
         if (number_of_exercise != 0) {

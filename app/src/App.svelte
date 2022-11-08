@@ -64,14 +64,15 @@
                 }
                 else if (event.smart_app_data.type === 'next') {
                     if (window.document.body.className == 'start') {
-                        if (number_of_exercise + 1 < exercise.length) {
+                        if (number_of_exercise + 1 < exercise.length) {                            
+                            number_of_exercise++;
                             assistant.sendData({
                                 action: {
                                     action_id: 'exercise',
                                     type: exercise[number_of_exercise]
                                 }
                             });
-                            number_of_exercise++;
+
                         }
                         else {
                             assistant.sendData({
@@ -83,6 +84,9 @@
                             document.getElementById('wrap').style.display="flex";
                             document.getElementById("base-timer").style.display="none";
                             document.getElementById('exercise').style.display="none";
+                            document.getElementById('back').style.display="none";
+                            document.getElementById('forward').style.display="none";
+                            document.getElementById('exer').style.display="none";
                             window.document.body.className = '';
                             timePassed = 0;
                         }
@@ -108,15 +112,25 @@
                     document.getElementById('wrap').style.display="flex";
                     document.getElementById("base-timer").style.display="none";
                     document.getElementById('exercise').style.display="none";
+                    document.getElementById('back').style.display="none";
+                    document.getElementById('forward').style.display="none";
+                    document.getElementById('exer').style.display="none";
                     window.document.body.className = '';
                     timePassed = 0;
                 }
             }
         })
     })
-    document.addEventListener('keydown', (event) => {    
-        logger.log(event.which)
-        switch(event.which) { 
+    document.addEventListener('keydown', function(event) {  
+        if (event.key == undefined) {
+            document.getElementById('description').innerHTML = 'Undefined key';
+        }  
+        else if (event.which == undefined) {
+            document.getElementById('description').innerHTML = 'Undefined which';
+        }
+    })
+    document.addEventListener('keydown', function(event) {    
+        switch(event.keyCode) { 
     case KeyEvent.KEYCODE_BACK:
         document.getElementById('description').innerHTML = 'Назад';
         break;
@@ -182,6 +196,9 @@
                             document.getElementById('wrap').style.display="flex";
                             document.getElementById("base-timer").style.display="none";
                             document.getElementById('exercise').style.display="none";
+                            document.getElementById('back').style.display="none";
+                            document.getElementById('forward').style.display="none";
+                            document.getElementById('exer').style.display="none";
                             window.document.body.className = '';
                             timePassed = 0;
                         }
@@ -210,6 +227,9 @@
                             document.getElementById('wrap').style.display="flex";
                             document.getElementById("base-timer").style.display="none";
                             document.getElementById('exercise').style.display="none";
+                            document.getElementById('back').style.display="none";
+                            document.getElementById('forward').style.display="none";
+                            document.getElementById('exer').style.display="none";
                             window.document.body.className = '';
                             timePassed = 0;
                         }
@@ -259,6 +279,9 @@
         timePassed = 0;
         document.getElementById("base-timer").style.display="none";
         document.getElementById('exercise').style.display="flex";
+        document.getElementById('back').style.display="flex";
+        document.getElementById('forward').style.display="flex";
+        document.getElementById('exer').style.display="flex";
         assistant.sendData({
                                 action: {
                                     action_id: 'exercise',
@@ -274,6 +297,22 @@
     document.getElementById("base-timer-label").innerHTML = formatTimeLeft(timeLeft);
     setTimeout(()=>startTimer(timeLeft),1000);
 }
+    const previous = () =>
+    {
+        assistant.sendData({
+            action: {
+                action_id: 'previous'
+            }
+        });
+    }
+    const next = () =>
+    {
+        assistant.sendData({
+            action: {
+                action_id: 'next'
+            }
+        });
+    }
    const start = () =>
    {
         if (window.document.body.className == 'fivemin') {
@@ -405,7 +444,7 @@
 }
 </script>
 <body id="body">
-    <script src="/node_modules/spatial-navigation-polyfill/polyfill/spatial-navigation-polyfill.js"></script>
+
 <!-- <head>
     <script>
     function digitalClock() {
@@ -458,7 +497,12 @@
                 {formatTimeLeft(timeLeft)}
             </span>
           </div>
-        <img id = "exercise" src = {exercise[number_of_exercise] + '.png'} class = "exercise" alt="Hello"/> 
+          <div class = "exer" id = "exer"> 
+            <button id = "back" class = "back" on:click = {() => previous()}></button>
+            <img id = "exercise" src = {exercise[number_of_exercise] + '.png'} class = "exercise" alt="Hello"/> 
+            <button id = "forward" class = "forward" on:click = {() => next()}></button>
+          </div>
+        
     </div>
     <div class="wrap" id = "wrap">
         <button class = "fivemin" id = "fivemin" tabindex="1" on:click = {() => fivemin()}>
@@ -546,6 +590,50 @@
 
 
 <style>
+    .exer {
+        width: 1920px;
+        height: 720px;
+        display: none;
+    }
+    .back, .back:focus {
+        background-image: url("https://i.ibb.co/17DG9TP/arrow1.png");
+        background-color: Transparent;
+        outline: none;
+        background-repeat: no-repeat;
+        border: none;
+        cursor: pointer;
+        overflow: hidden;
+        background-size: 100%;
+        float: left;
+        display: none;
+        margin-top: 250px;
+        margin-bottom: 250px;
+        height: 220px;
+        width: 220px;
+    }
+    .forward, .forward:focus {
+        background-image: url("https://i.ibb.co/LvqNDWw/arrow2.png" );
+        background-color: Transparent;
+        outline: none;
+        background-repeat: no-repeat;
+        border: none;
+        cursor: pointer;
+        overflow: hidden;
+        background-size: 100%;
+        float: right;
+        display: none;
+        margin-top: 250px;
+        margin-bottom: 250px;
+        height: 220px;
+        width: 220px;
+    }
+    .exercise{
+        width: 1280px;
+        height: 720px;
+        margin-left: 100px;
+        margin-right: 100px;
+        display: none
+    }
     .close:focus, .start:focus {
         background: rgb(87,144,137);
         background: linear-gradient(135deg, rgba(87,144,137,1) 0%, rgba(46,116,110,1) 100%);
@@ -557,13 +645,6 @@
     }
     .description {
         font-family: cursive;
-    }
-    .exercise{
-        width: 1280px;
-        height: 720px;
-        margin-left: 320px;
-        margin-right: 320px;
-        display: none
     }
     .hr2 {
         margin-top: 60px
@@ -589,12 +670,6 @@
         margin-top: 0px;
         font-size: 22px;
         margin-left: 20px;
-    }
-    .img {
-        --heightA: var(--height);
-        --widthA: var(--width);
-        margin-right: 25%;
-        margin-left: 25%;
     }
     .start {
         float: left;
@@ -848,11 +923,23 @@
     }
 
     @media screen and (min-width: 2101px) {
+    .exer {
+        width: 2560px;
+        height: 1440px;
+        display: none;
+    }
+    .back, .back:focus, .forward, .forward:focus {
+        margin-top: 550px;
+        margin-bottom: 250px;
+        height: 320px;
+        width: 320px;
+        padding: 200px;
+    }
     .exercise{
         width: 2560px;
         height: 1440px;
-        margin-left: 640px;
-        margin-right: 640px;
+        margin-left: 225px;
+        margin-right: 225px;
         margin-bottom: 100px;
     }
 
@@ -1096,11 +1183,24 @@
         text-align: center;
         width: 210px;
     }
+    .exer {
+        width: 1280px;
+        height: 720px;
+        display: none;
+    }
+    .back, .back:focus,.forward, .forward:focus {
+        padding: 100px;
+        background-size: 100%;
+        margin-top: 250px;
+        margin-bottom: 250px;
+        height: 220px;
+        width: 220px;
+    }
     .exercise{
         width: 1280px;
         height: 720px;
-        margin-left: 320px;
-        margin-right: 320px;
+        margin-left: 180px;
+        margin-right: 180px;
     }
     .description{
         font-size: 34px;
@@ -1232,10 +1332,22 @@
     }
 }
 @media screen and (max-width: 1300px) {
-    .exercise{
-        width: 960px;
-        margin-left: 160px;
-        margin-right: 160px;
+    .back, .back:focus, .forward, .forward:focus  {
+        background-size: 50%;
+        margin-top: 175px;
+        margin-bottom: 175px;
+        height: 100px;
+        width: 100px;
+    }
+    .exer {
+        width: 1280px;
+        height: 450px;
+    }
+    .exercise {
+        width: 800px;
+        height: 450px;
+        margin-left: 140px;
+        margin-right: 140px;
     }
     #hidden_panel {
         text-align: center;
@@ -1334,12 +1446,6 @@
     .discrription {
         font-size: 19px;
         height: 300px;
-    }
-    .exercise {
-        width: 800px;
-        height: 450px;
-        margin-left: 240px;
-        margin-right: 240px;
     }
     .title {
         width: 300px;

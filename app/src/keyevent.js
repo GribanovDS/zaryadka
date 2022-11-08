@@ -4,6 +4,7 @@
  * @author dnelson
  * @since 1.0.0
  */
+
  const KeyEvent = {
     KEYCODE_POWER: 26,
     KEYCODE_VOLUME_MUTE: 164,

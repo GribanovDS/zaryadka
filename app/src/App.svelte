@@ -56,7 +56,7 @@
             if (event.type === 'smart_app_data') {
                 logger.log(event.smart_app_data.type);
                 if (event.smart_app_data.type === 'close_app'){
-                    assistant.close();
+                    document.getElementById('description').innerHTML = 'ТЕСТ'
                 }
                 else if (event.smart_app_data.type === 'smartapp') {
                     console.log('here');

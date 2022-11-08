@@ -120,8 +120,8 @@
     }
   });
     document.addEventListener('keydown', (event) => {    
-        logger.log(event.keyCode);
-        switch(event.keyCode) { 
+        document.getElementById('description').innerHTML = event.which;
+        switch(event.which) { 
     case KeyEvent.KEYCODE_BACK:
         document.getElementById('description').innerHTML = 'Назад';
         break;

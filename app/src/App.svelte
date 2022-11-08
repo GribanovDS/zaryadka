@@ -43,6 +43,14 @@
                         document.getElementById('description').innerHTML = 'Выбери оптимальную длительность упражнений'
                     }
                 }
+                else {
+                    if (document.getElementById('description').textContent == "Повторяй за упражнениями на экране") {
+                        document.getElementById('description').innerHTML = "Повторяйте за упражнениями на экране";
+                    }
+                    else if (document.getElementById('description').textContent == "Выбери оптимальную длительность упражнений") {
+                        document.getElementById('description').innerHTML = 'Выберите оптимальную длительность упражнений'
+                    }
+                }
             }
 
             if (event.type === 'smart_app_data') {

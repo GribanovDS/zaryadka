@@ -325,7 +325,7 @@
         var word = exercise[0]
         close();
         document.getElementById('wrap').style.display="none";
-        document.getElementById('description').innerHTML = (assistant == 'joy') ? "Повторяй за упражнениями на экране" : "Повторяйте за упражнениями на экране"
+        document.getElementById('description').innerHTML = (character == 'joy') ? "Повторяй за упражнениями на экране" : "Повторяйте за упражнениями на экране"
         document.getElementById('base-timer').style.display="flex";
         startTimer(TIME_LIMIT);
         logger.log(word);    

@@ -35,8 +35,13 @@
 
             if (event.type === 'character') {
                 character = event.character.id;
-                if (character === 'joy' || character === 'eva') {
-                    setTheme('sber');
+                if (character === 'joy') {
+                    if (document.getElementById('description').textContent == "Повторяйте за упражнениями на экране") {
+                        document.getElementById('description').innerHTML = "Повторяй за упражнениями на экране";
+                    }
+                    else if (document.getElementById('description').textContent == "Выберите оптимальную длительность упражнений") {
+                        document.getElementById('description').innerHTML = 'Выбери оптимальную длительность упражнений'
+                    }
                 }
             }
 
@@ -270,7 +275,7 @@
         var word = exercise[0]
         close();
         document.getElementById('wrap').style.display="none";
-        document.getElementById('description').innerHTML = "Повторяйте за упражнениями на экране!";
+        document.getElementById('description').innerHTML = "Повторяйте за упражнениями на экране";
         document.getElementById('base-timer').style.display="flex";
         startTimer(TIME_LIMIT);
         logger.log(word);    

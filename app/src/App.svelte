@@ -589,6 +589,12 @@
 
 
 <style>
+    .img {
+        width: 250px;
+        height: 250px;
+        margin-left: 135px;
+        margin-right: 135px;
+    }
     .exer {
         width: 1920px;
         height: 720px;

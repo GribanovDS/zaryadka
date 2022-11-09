@@ -5,7 +5,7 @@
     import { logger } from "./utils";
   import KeyEvent from './keyevent';
 
-    let token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGY5MzMwNjQ3MjJiN2M2Zjc1MTdiNGEwNGU5Y2Q1N2I3YmFhZGU1ZGRhODNlOTU4ZWM5MmZhYTk5ZDUwMTNmNTM5YmU5MjcwMDQyNjI5OCIsImF1ZCI6IlZQUyIsImV4cCI6MTY2NzkzMzkxOSwiaWF0IjoxNjY3ODQ3NTA5LCJpc3MiOiJLRVlNQVNURVIiLCJ0eXBlIjoiQmVhcmVyIiwianRpIjoiMjhhYmYxN2YtODdlNi00MDhjLWI3MTQtMGExYTkzZmFmYmQ2Iiwic2lkIjoiNTNkYWM3OGUtZTlmNS00MzBiLTkwZDktMDUwMjY1NzM1Njk3In0.fqJqcaBn1qwa46za8xyuOeqm75TwZleM4boBDAVdYZVmrR7jGg9tvGjV0sEmQbsb34tL04Mm32tphhOIXqg6_u_mnemnKSRdtwYZqLUhy930aV2sOXP3kmoeKR7ajqS9BOW8VmcLP__Bd_G0yhwyQsrt2Px7YpGwQDphZotCibDvdIs58Mmpv7hrrbtOrM520iwfZZyRMmw08cptI3ojoPy60hnHHEgk9tpJJ6xNQLtDEOlPp8aAwQH2HSunkxDx5f_Qb9gXAWVSkBFYhAQ2em0Jf1W11owMgZ-AcaBdR77co66Bv61tAO63i5AFf8RRWk0V25_HJKt-7t19F3a6aslr24OOCu0eKLvMhU8Fqhro4hXYkA6cnegM-ll2xsU9njiHaKVipcAjNJ7n37QaWYCI7RVwxu0rVTl5PCyFTHWeKfqe69yvYA28BEN9h4OfXrE3rxmemZpXVbREOSOx1bqGr9o7mQZsHOy5V2B8tuHAJaHTWCCS8b7vTkJ7TyYwnPAVqyWG23TlDKlssvnh5FtlPH4Uq3nMH_xUUbrxE8jl49qwaaQup4CZPgof8ZAoRt5d4I2CEDSPn1UMJuYmoBHYqoKJkcSCZOLM1RM_FNGV3pcEar1WC0QY5r31MZ0HAmGrDK-OL9a5yIdQyrto6v24lPSuKgJpuR2CLv0L3mc";
+    let token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGY5MzMwNjQ3MjJiN2M2Zjc1MTdiNGEwNGU5Y2Q1N2I3YmFhZGU1ZGRhODNlOTU4ZWM5MmZhYTk5ZDUwMTNmNTM5YmU5MjcwMDQyNjI5OCIsImF1ZCI6IlZQUyIsImV4cCI6MTY2ODA4NDM0NiwiaWF0IjoxNjY3OTk3OTM2LCJpc3MiOiJLRVlNQVNURVIiLCJ0eXBlIjoiQmVhcmVyIiwianRpIjoiN2VjZjVhM2EtNDA4Zi00NzAyLTk5ZTgtMmFiNjA4ZmNlZWNmIiwic2lkIjoiN2ZhMGExYTYtOTJjMC00M2IxLTg5NzAtMzQ5MzYwOTE3MWUwIn0.CgA204hONN6bUPGobMK1RS32lknR87_cWQKW-mlf5-uqTYmq9oBD1A-3g7-tvd-Swx8c8QPHpjaP2jH2PWvK4IqCzg1koXOcFYvnGT_jtbvljy4KCQdbFGnPTMZ1KndTuMeoJ8aP7ZP8E_o-aZs39SgfS7ge3s9VWFG8aNZ_KDfWEByBaz4JIaUDROkTzIY7frsEN3M4wISsFix37uyRke2SLv9Ck1fN0GPrdKbe5iK_5sj3Q_2wk8gLGxbS1e32egc_u4nSjbxA7fuG5icxMzlI5sVC2LrpyXvGmOprslVYH44qNMeRrZtMmuSb8AJernSfUlvjfvhMErsmz85prTO31Lr2UoyNhBVRRIQFnZhguJzoWcjmctwSEq_SNthq4OF24PCOUmv1otCijLL34M8oTEaFfjKJQ8-FSB72_iMuaUrv1HO8iLYvhYVuBEw2a5iKsN71PuvxHxZJBLqtRFYaFbtFUf0yefDypco-Ol1BrQ4ZGTxJOQ3kwrIi4WGLFQAMRq1wScVhOz25qHbWfaBhpo6hWhsHIGhTD_ClyceWmKPDbBjxHr6Zy3ctl6uqOYvWX2hHWrbDeN1zz3qmb2jvKeBFkSclHo4zQ7O2YbX7pM8vktBy5D_zrnWg5dnqtvcPfYNHsMMsJQJoBGI6cxDfPlDvMvMuwy62fY-IX7Y";
 // Set the name of your SmartApp for activation
     let initPhrase = 'запусти Утренняя Зарядка';
     let character = 'eva'; // default, before sber client gets state
@@ -173,66 +173,65 @@
       break;
       case 39:
       // Вправо
-      if (window.document.body.className == 'fivemin' || window.document.body.className == 'sevenmin' || window.document.body.className == 'tenmin') {
-        close()
-      }
-      else if (window.document.body.className == 'start') {
-        if (number_of_exercise + 1 < exercise.length) {
-                            assistant.sendData({
-                                action: {
-                                    action_id: 'exercise',
-                                    type: exercise[number_of_exercise]
-                                }
-                            });
-                            number_of_exercise++;
-                        }
-                        else {
-                            assistant.sendData({
-                                action: {
-                                    action_id: 'completed'
-                                }
-                            });
-                            number_of_exercise = 0; 
-                            document.getElementById('wrap').style.display="flex";
-                            document.getElementById("base-timer").style.display="none";
-                            document.getElementById('exercise').style.display="none";
-                            document.getElementById('back').style.display="none";
-                            document.getElementById('forward').style.display="none";
-                            document.getElementById('exer').style.display="none";
-                            window.document.body.className = '';
-                            timePassed = 0;
-                        }
+      if (window.document.body.className == 'start') {
+        if (number_of_exercise + 1 < exercise.length) {                            
+            number_of_exercise++;
+            assistant.sendData({
+                action: {
+                    action_id: 'exercise',
+                    type: exercise[number_of_exercise]
+                }
+            });
+
+        }
+        else {
+            assistant.sendData({
+                action: {
+                    action_id: 'completed'
+                }
+            });
+            number_of_exercise = 0; 
+            document.getElementById('wrap').style.display="flex";
+            document.getElementById("base-timer").style.display="none";
+            document.getElementById('exercise').style.display="none";
+            document.getElementById('back').style.display="none";
+            document.getElementById('forward').style.display="none";
+            document.getElementById('exer').style.display="none";
+            window.document.body.className = '';
+            timePassed = 0;
+        }
       }
 
      break;
      case 38:
       // Вверх
     if (window.document.body.className == 'start') {
-        if (number_of_exercise + 1 < exercise.length) {
-                            assistant.sendData({
-                                action: {
-                                    action_id: 'exercise',
-                                    type: exercise[number_of_exercise]
-                                }
-                            });
-                            number_of_exercise++;
-                        }
-                        else {
-                            assistant.sendData({
-                                action: {
-                                    action_id: 'completed'
-                                }
-                            });
-                            number_of_exercise = 0; 
-                            document.getElementById('wrap').style.display="flex";
-                            document.getElementById("base-timer").style.display="none";
-                            document.getElementById('exercise').style.display="none";
-                            document.getElementById('back').style.display="none";
-                            document.getElementById('forward').style.display="none";
-                            document.getElementById('exer').style.display="none";
-                            window.document.body.className = '';
-                            timePassed = 0;
-                        }
+        if (number_of_exercise + 1 < exercise.length) {                            
+            number_of_exercise++;
+            assistant.sendData({
+                action: {
+                    action_id: 'exercise',
+                    type: exercise[number_of_exercise]
+                }
+            });
+
+        }
+        else {
+            assistant.sendData({
+                action: {
+                    action_id: 'completed'
+                }
+            });
+            number_of_exercise = 0; 
+            document.getElementById('wrap').style.display="flex";
+            document.getElementById("base-timer").style.display="none";
+            document.getElementById('exercise').style.display="none";
+            document.getElementById('back').style.display="none";
+            document.getElementById('forward').style.display="none";
+            document.getElementById('exer').style.display="none";
+            window.document.body.className = '';
+            timePassed = 0;
+        }
       }
 
      break;

@@ -348,13 +348,15 @@
         document.getElementById('fivemin').tabIndex = 1;
         document.getElementById('sevenmin').tabIndex = 2;
         document.getElementById('tenmin').tabIndex = 3;
+        document.getElementById('start').tabIndex = -1;
+        document.getElementById('close').tabIndex = -1;
         assistant.sendData({
             action: {
                 action_id: 'close'
             }
         });
     }
-   const fivemin = () =>
+   const    fivemin = () =>
     {
         sevenbool = tenbool = false;
         visible = fivebool = true;
@@ -362,6 +364,8 @@
         document.getElementById('fivemin').tabIndex = -1;
         document.getElementById('sevenmin').tabIndex = -1;
         document.getElementById('tenmin').tabIndex = -1;
+        document.getElementById('start').tabIndex = 1;
+        document.getElementById('close').tabIndex = 2;
         window.document.body.classList.toggle('fivemin');
         document.getElementById('hidden_panel').style.right = '0px';
         document.getElementById('hidden_panel2').style.right = '0px';
@@ -381,6 +385,8 @@
         document.getElementById('fivemin').tabIndex = -1;
         document.getElementById('sevenmin').tabIndex = -1;
         document.getElementById('tenmin').tabIndex = -1;
+        document.getElementById('start').tabIndex = 1;
+        document.getElementById('close').tabIndex = 2;
         window.document.body.classList.toggle('sevenmin');
         document.getElementById('hidden_panel').style.right = '0px';
         document.getElementById('hidden_panel2').style.right = '0px';
@@ -400,6 +406,8 @@
         document.getElementById('fivemin').tabIndex = -1;
         document.getElementById('sevenmin').tabIndex = -1;
         document.getElementById('tenmin').tabIndex = -1;
+        document.getElementById('start').tabIndex = 1;
+        document.getElementById('close').tabIndex = 2;
         window.document.body.classList.toggle('tenmin');
         document.getElementById('hidden_panel').style.right = '0px';
         document.getElementById('hidden_panel2').style.right = '0px';
@@ -532,7 +540,7 @@
 </div>
 <div class = "hidden_panel2" id = "hidden_panel2"></div>
 <div class = "hidden_panel" id = "hidden_panel">
-    <button class="close" tabindex="4" on:click = {() => close()} >x</button>
+    <button id = "close" class="close" tabindex="-1" on:click = {() => close()} >x</button>
     {#if fivebool}
         <h1 class = "discription-title">5 мин</h1>
         <hr class = "hr2">
@@ -580,7 +588,7 @@
             - Приседания<br/>
             - Прыжки</h0>
     {/if}
-    <button class="start" tabindex="5" on:click = {() => start()}> Начать </button>
+    <button id = "start" class="start" tabindex="-1" on:click = {() => start()}> Начать </button>
 </div>
 
 </body>

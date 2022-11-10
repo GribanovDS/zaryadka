@@ -12,6 +12,7 @@
     let assistant;
     var stoptime = false;
     var stopex = false;
+    var started = false
     //$: setTheme(character);
     onMount(() =>
     {
@@ -57,7 +58,6 @@
             if (event.type === 'smart_app_data') {
                 logger.log(event.smart_app_data.type);
                 if (event.smart_app_data.type === 'close_app'){
-                    document.getElementById('description').innerHTML = 'ТЕСТ'
                 }
                 else if (event.smart_app_data.type === 'smartapp') {
                     console.log('here');
@@ -80,6 +80,7 @@
                                     action_id: 'completed'
                                 }
                             });
+                            started = false;
                             number_of_exercise = 0; 
                             document.getElementById('wrap').style.display="flex";
                             document.getElementById("base-timer").style.display="none";
@@ -108,6 +109,7 @@
                     if (document.getElementById("base-timer").style.display==="flex") 
                         stoptime = true;
                     else {}
+                    started = false;
                     number_of_exercise = 0;
                     document.getElementById('wrap').style.display="flex";
                     document.getElementById("base-timer").style.display="none";
@@ -144,7 +146,7 @@
         document.getElementById('description').innerHTML = 'звук';
         break;
      case 37:
-     if (window.document.body.className == 'start') {
+     if (window.document.body.className == 'start' && started) {
         if (number_of_exercise != 0) {
                         number_of_exercise--;
                         assistant.sendData({
@@ -158,7 +160,7 @@
       // Влево
       break;
       case 40:
-      if (window.document.body.className == 'start') {
+      if (window.document.body.className == 'start' && started) {
         if (number_of_exercise != 0) {
                         number_of_exercise--;
                         assistant.sendData({
@@ -173,7 +175,7 @@
       break;
       case 39:
       // Вправо
-      if (window.document.body.className == 'start') {
+      if (window.document.body.className == 'start' && started) {
         if (number_of_exercise + 1 < exercise.length) {                            
             number_of_exercise++;
             assistant.sendData({
@@ -205,7 +207,7 @@
      break;
      case 38:
       // Вверх
-    if (window.document.body.className == 'start') {
+    if (window.document.body.className == 'start' && started) {
         if (number_of_exercise + 1 < exercise.length) {                            
             number_of_exercise++;
             assistant.sendData({
@@ -314,6 +316,7 @@
     }
    const start = () =>
    {
+        started = true;
         if (window.document.body.className == 'fivemin') {
             exercise = exercises_easy;
         } else if (window.document.body.className == 'sevenmin') {
